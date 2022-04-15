@@ -18,15 +18,23 @@ return function(Infinity)
     end
 
     -- // EntityManager Functions
-    function EntityManager:Archetype(ComponentTypes)
+    function EntityManager:GetArchetypeFromComponents(ComponentTypes)
         for _, Archetype in ipairs(self.Archetypes) do
             if Archetype:Contains(ComponentTypes) then
                 return Archetype
             end
         end
+    end
 
-        table.insert(self.Archetypes, Infinity.Archetype.new(ComponentTypes))
-        return self.Archetypes[#self.Archetypes]
+    function EntityManager:Archetype(ComponentTypes)
+        local Archetype = self:GetArchetypeFromComponents(ComponentTypes)
+
+        if Archetype then 
+            return Archetype
+        else
+            table.insert(self.Archetypes, Infinity.Archetype.new(ComponentTypes))
+            return self.Archetypes[#self.Archetypes]
+        end
     end
 
     function EntityManager:ToType(ComponentList)

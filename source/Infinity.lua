@@ -62,6 +62,7 @@ function Infinity.new()
         Script = getfenv()["script"];
 
         _Entities = { };
+        _Worlds = { };
     }, Infinity)
 
     self.World = self:ImportModule("World")(self)
@@ -74,9 +75,15 @@ function Infinity.new()
     self.Archetype = self:ImportModule("Entity\\EntityArchetype")(self)
     self.Entity = self:ImportModule("Entity\\EntityObject")(self)
 
-    self.SystemController = self:ImportModule("System\\SystemController")(self)
     self.SystemClock = self:ImportModule("System\\SystemClock")(self)
     self.System = self:ImportModule("System\\SystemObject")(self)
+    
+    self.SystemController = self:ImportModule("System\\SystemController")(self)
+
+    if self.IsRoblox then
+        self.World = self.World.new()
+        self.World:SetState(true)
+    end
 
     return self
 end

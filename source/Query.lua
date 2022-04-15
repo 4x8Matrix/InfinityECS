@@ -18,10 +18,48 @@ return function(Infinity)
     end
 
     -- // Entity Functions
+    function Query:StrictResult(Entities)
+        for Index, Entity in ipairs(Entities) do
+            for _, QueryComponentName in ipairs(self.Components) do
+                local EntityIllegal
+
+                for ComponentName, _ in pairs(Entity.Components) do
+                    if QueryComponentName ~= ComponentName then
+                        EntityIllegal = true
+
+                        break
+                    end
+                end
+
+                if EntityIllegal then
+                    table.remove(Entities, Index)
+                end
+            end
+
+            for ComponentName, _ in pairs(Entity.Components) do
+                local EntityIllegal
+
+                for _, QueryComponentName in ipairs(self.Components) do
+                    if QueryComponentName ~= ComponentName then
+                        EntityIllegal = true
+
+                        break
+                    end
+                end
+
+                if EntityIllegal then
+                    table.remove(Entities, Index)
+                end
+            end
+        end
+
+        return Entities
+    end
+
     function Query:GetResult()
         local Entities = { }
 
-        for _, Entity in ipairs(Infinity._Entities) do
+        for _, Entity in ipairs((self._World and self._World._Entities) or Infinity._Entities) do
             for ComponentName, Component in pairs(Entity.Components) do
                 local ComponentInEntity
 
@@ -47,57 +85,17 @@ return function(Infinity)
             end
         end
 
-        if self.Strict then
-            local StrictEntities = { }
-
-            for _, Entity in ipairs(Entities) do
-                for _, QueryComponentName in ipairs(self.Components) do
-                    local EntityIllegal
-
-                    for ComponentName, _ in pairs(Entity.Components) do
-                        if QueryComponentName ~= ComponentName then
-                            EntityIllegal = true
-
-                            break
-                        end
-                    end
-
-                    if not EntityIllegal then
-                        table.insert(StrictEntities, Entity)
-                    end
-                end
-
-                for ComponentName, _ in pairs(Entity.Components) do
-                    local EntityIllegal
-
-                    for _, QueryComponentName in ipairs(self.Components) do
-                        if QueryComponentName ~= ComponentName then
-                            EntityIllegal = true
-
-                            break
-                        end
-                    end
-
-                    if not EntityIllegal then
-                        table.insert(StrictEntities, Entity)
-                    end
-                end
-            end
-        
-            Entities = StrictEntities
-        end
-
-        return Entities
+        return (self.IsStrict and self:StrictResult(Entities)) or Entities
     end
 
     function Query:Strict()
-        self.Strict = true
+        self.IsStrict = true
 
         return self
     end
 
     function Query:Unstrict()
-        self.Strict = false
+        self.IsStrict = false
 
         return self
     end
@@ -120,11 +118,15 @@ return function(Infinity)
         return self
     end
 
-    function Query.new()
-        local self = setmetatable({ Id = Infinity:_Id() }, Query)
+    function Query.new(World)
+        local self = setmetatable({ Id = Infinity:_Id(); _World = World }, Query)
 
-        self.Strict = true
+        self.IsStrict = false
         self.Components = { }
+
+        if Infinity.IsRoblox then
+            self._World = Infinity.World
+        end
 
         return self
     end

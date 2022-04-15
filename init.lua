@@ -11,7 +11,7 @@
 package.path = package.path .. ";source\\?.lua"
 
 -- // Variables
-local UnitTests = { "clock" } -- { "Component", "Entity", "System", "World" }
+local UnitTests = { "System" } -- { "Component", "Entity", "System", "World" }
 
 -- // Logic
 local FailCount, SuccessCount = 0, 0

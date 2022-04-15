@@ -22,25 +22,24 @@ return function(Infinity)
 
         self.Delta = (os.clock() - self._Clock) + DeltaTime
 
-        for Index, YieldingThreadData in ipairs(self.Yielding) do
-            if os.clock() - YieldingThreadData.Clock >= YieldingThreadData.Int then
-                coroutine.resume(YieldingThreadData.Thread, (YieldingThreadData.Int - (os.clock() - YieldingThreadData.Clock) + DeltaTime))
+        for Index, TaskData in ipairs(self.Tasks) do
+            if os.clock() - TaskData[2] >= TaskData[1] then
+                coroutine.resume(TaskData[3], (((os.clock() - TaskData[2]) - TaskData[1]) + DeltaTime))
 
-                table.remove(self.Yielding, Index)
+                table.remove(self.Tasks, Index)
             end
         end
     end
 
     function Clock:ResumeIn(Int)
-        table.insert(self.Yielding, { Int = Int; Clock = os.clock(); Thread = coroutine.running() })
+        table.insert(self.Tasks, { Int or 1 / Infinity.SystemController.FPS; os.clock(); coroutine.running() })
 
         return coroutine.yield()
     end
 
     -- // Clock Functions
     function Clock.new()
-        local self = setmetatable({ Id = Infinity:_Id(), Yielding = { } }, Clock)
-
+        local self = setmetatable({ Id = Infinity:_Id(), Tasks = { } }, Clock)
         self._Clock = os.clock()
 
         return self

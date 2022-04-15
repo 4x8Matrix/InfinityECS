@@ -18,11 +18,15 @@ return function(Infinity)
     end
 
     -- // System Functions
+    function System:PreUpdate() return true end
+    function System:OnUpdate() end
+    function System:PostUpdate() end
+
     function System.new()
         local self = setmetatable({ Id = Infinity:_Id() }, System)
 
         return self
     end
 
-    return System.new()
+    return System
 end

@@ -22,7 +22,9 @@ return function(Infinity)
     end
 
     -- // Entity Functions
-    function Entity:Destroy() end
+    function Entity:Destroy() 
+    
+    end
 
     function Entity:Iter()
         local Index, Key, Value = 0, nil, nil
@@ -35,10 +37,8 @@ return function(Infinity)
         end
     end
 
-    function Entity:AddComponents(ComponentDict)
-        for Name, Component in pairs(ComponentDict) do
-            self.Components[Name] = Component
-        end
+    function Entity:AddComponent(Name, Value)
+        self.Components[Name] = Infinity.Component.new(Value._Data)
 
         Infinity.EntityManager:Manage(self)
     end
@@ -49,7 +49,7 @@ return function(Infinity)
         Infinity.EntityManager:Manage(self)
     end
 
-    function Entity:GetComponentOf(Type)
+    function Entity:GetComponentFromType(Type)
         local Components = { }
 
         assert(Type ~= nil, "Expected Argument #1 Type")
@@ -63,11 +63,22 @@ return function(Infinity)
         return Components
     end
 
-    function Entity.new(ComponentsDict)
-        local self = setmetatable({ Id = Infinity:_Id(), Components = ComponentsDict or { } }, Entity)
-        table.insert(Infinity._Entities, self)
-        Infinity.EntityManager:Manage(self)
+    function Entity:Extend(...)
+        local EntityExtended = Entity.new(self.Components, self.Name)
+        EntityExtended.Super = self
 
+        return EntityExtended
+    end
+
+    function Entity.new(Components, Name)
+        local self = setmetatable({ Id = Infinity:_Id(), Components = { }, Name = Name }, Entity)
+        
+        table.insert(Infinity._Entities, self)
+        for ComponentName, Component in pairs(Components) do
+            self:AddComponent(ComponentName, Component)
+        end
+
+        Infinity.EntityManager:Manage(self)
 
         return self
     end

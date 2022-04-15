@@ -84,22 +84,6 @@ return function(Infinity)
         self._Data = (type(val) ~= "function" and val) or val(self._Data)
     end
 
-    function Component:Extend(Data)
-        local DataType, localDataType = type(Data), type(self._Data)
-        local Component
-
-        assert(DataType == localDataType, string.format("Argument #1, Expected type %s, got %s", DataType, localDataType))
-
-        Component = Component.new(Data)
-        Component.super = self
-
-        if DataType == "table" then
-            Component:Set(fillTable(Data, self._Data))
-        end
-
-        return Component
-    end
-
     function Component:Equal(Target)
         return self.Id == Target.Id
     end
@@ -108,8 +92,8 @@ return function(Infinity)
         return type(self._Data)
     end
 
-    function Component.new(Data)
-        return setmetatable({ _Data = Data, Id = Infinity:_Id() }, Component)
+    function Component.new(Data, ComponentName)
+        return setmetatable({ _Data = Data, Id = Infinity:_Id(), Name = ComponentName }, Component)
     end
 
     return Component
