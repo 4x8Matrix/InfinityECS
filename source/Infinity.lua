@@ -17,6 +17,7 @@
 
 -- // Variables
 local Infinity = { Name = "Infinity ECS", Version = "2.0" }
+local Environment = getfenv()
 
 -- // Meta Methods
 function Infinity:__index(Index) return Infinity[Index] end
@@ -36,6 +37,20 @@ function Infinity:ImportModule(ModuleFullName)
     else
         return require(ModuleFullName)
     end
+end
+
+function Infinity:Update(...)
+    self.SystemClock:Update(...)
+end
+
+function Infinity:GetService(ServiceName)
+    if self._Cache[ServiceName] then
+        return self._Cache[ServiceName]
+    else
+        self._Cache[ServiceName] = self[ServiceName] or (Environment.game and Environment.game:GetService(ServiceName))
+    end
+
+    return self._Cache[ServiceName]
 end
 
 function Infinity:_Hex(Size)
@@ -59,14 +74,17 @@ end
 function Infinity.new()
     local self = setmetatable({
         IsRoblox = _VERSION == "Luau";
-        Script = getfenv()["script"];
+        Script = Environment.script;
 
+        _Cache = { };
+        
         _Entities = { };
         _Worlds = { };
     }, Infinity)
 
     self.World = self:ImportModule("World")(self)
     self.Query = self:ImportModule("Query")(self)
+    self.Service = self:ImportModule("Service")(self)
 
     self.Component = self:ImportModule("Component\\Component")(self)
     self.ComponentBuilder = self:ImportModule("Component\\ComponentBuilder")(self)
@@ -81,8 +99,15 @@ function Infinity.new()
     self.SystemController = self:ImportModule("System\\SystemController")(self)
 
     if self.IsRoblox then
+        local RunService = self:GetService("RunService")
+
         self.World = self.World.new()
         self.World:SetState(true)
+
+        self.IsServer = RunService:IsServer()
+        self.UpdateConnection = ((self.IsServer and RunService.Stepped) or RunService.RenderStepped):Connect(function(DeltaTime)
+            self:Update(DeltaTime)
+        end)
     end
 
     return self

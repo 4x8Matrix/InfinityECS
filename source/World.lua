@@ -20,14 +20,18 @@ return function(Infinity)
     -- // Functions
     function WorldObject:AddEntity(EntityObject)
         assert(getmetatable(EntityObject).Name == "Entity", "Expected Argument #1 EntityObject")
-
         table.insert(self._Entities, EntityObject:Extend())
+
+        self:Push("EntityAdded", EntityObject)
     end
 
     function WorldObject:AddSystem(SystemObject)
         assert(getmetatable(SystemObject).Name == "System", "Expected Argument #1 SystemObject")
-
         table.insert(self._Systems, SystemObject)
+
+        SystemObject.World = self
+
+        self:Push("SystemAdded", SystemObject)
     end
 
     function WorldObject:GetEntitiesFromArchetype(Archetype)
