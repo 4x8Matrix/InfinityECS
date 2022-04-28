@@ -101,7 +101,7 @@ function Infinity.new()
     if self.IsRoblox then
         local RunService = self:GetService("RunService")
 
-        self.World = self.World.new()
+        self.World = self.World.new({ }, "Default")
         self.World:SetState(true)
 
         self.IsServer = RunService:IsServer()
