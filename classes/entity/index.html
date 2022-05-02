@@ -542,70 +542,82 @@
 <p>An entity is one of the three elements that build the ECS architecture; They are the instances in your project. An entity instance is essentially a collection of components, binding multiple things together in order to create a more complicated object</p>
 <h1 id="properties">Properties</h1>
 <h3 id="name">Name</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Entity.Name: String
 </code></pre></div>
-<p>???</p>
+<p>The given name of a Entity object</p>
 <hr />
 <h3 id="id">Id</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Entity.Id: String
 </code></pre></div>
-<p>???</p>
+<p>Short Hexidecimal string used to assign an object a unique string for identification </p>
 <hr />
 <h3 id="archetype">Archetype</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Entity.Archetype: Archetype
 </code></pre></div>
-<p>???</p>
+<p>The archetype profile which matches this entity</p>
 <hr />
 <h3 id="components">Components</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Entity.Components = { [String]: ComponentObject }
 </code></pre></div>
-<p>???</p>
+<p>Dictionary of all components related to the Entity</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Never write data to the Components Table; This will cause serve problems when it comes to archetypes and entity components.</p>
+</div>
 <h1 id="functions">Functions</h1>
 <h3 id="destroy">Destroy</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Entity:Destroy()
 </code></pre></div>
-<p>???</p>
+<p>Destroys all components attached to the entity object, then will proceed in removing itself from the programs memory.</p>
 <hr />
 <h3 id="iter">Iter</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Entity:Iter()
 </code></pre></div>
-<p>???</p>
+<p>Iterate through the Entities components</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>for ComponentName, Component in Entity:Iter() do
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    print(ComponentName, Component)
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>end
+</code></pre></div>
 <hr />
 <h3 id="addcomponent">AddComponent</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Entity:AddComponent(Component)
 </code></pre></div>
-<p>???</p>
+<p>Adds a single component to the entities registry</p>
 <hr />
 <h3 id="addcomponents">AddComponents</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Entity:AddComponents(ComponentA, ComponentB, ...)
 </code></pre></div>
-<p>???</p>
+<p>Adds a multiple components to the entities registry</p>
 <hr />
 <h3 id="removecomponent">RemoveComponent</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Entity:RemoveComponent(ComponentName)
 </code></pre></div>
-<p>???</p>
+<p>Removes a single component from the entities registry</p>
 <hr />
 <h3 id="removecomponents">RemoveComponents</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Entity:RemoveComponents(ComponentAName, ComponentBName, ...)
 </code></pre></div>
-<p>???</p>
+<p>Removes a multiple components from the entities registry</p>
 <hr />
-<h3 id="getcomponentfromtype">GetComponentFromType</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>
+<h3 id="getcomponentsfromtype">GetComponentsFromType</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Entity:GetComponentsFromType(Type: String)
 </code></pre></div>
-<p>???</p>
-<hr />
+<h2 id="construct-an-array-with-all-entity-components-that-have-the-specific-type">Construct an array with all entity components that have the specific type</h2>
 <h3 id="extend">Extend</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Entity:Extend()
 </code></pre></div>
-<p>???</p>
+<p>Create a replica entity, however, the child entity will have a Super reference</p>
 <hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Infinity.Entity.new(ComponentsArray: { [Number]: ComponentObject }, Name: String)
 </code></pre></div>
-<p>???</p>
+<p>Initiate a new Entity object</p>
 <h1 id="code-sample">Code Sample</h1>
+<p>Below will be an example of a player entity</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>local PlayerObject = Infinity.Entity.new({
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    Infinity.Component.new(&quot;SuperCoolName&quot;, &quot;PlayerName&quot;)
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>})
+</code></pre></div>
 
               
             </article>

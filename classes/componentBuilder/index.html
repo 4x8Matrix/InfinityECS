@@ -542,26 +542,60 @@
 <p>The component builder class offers a flexible and easy way to build a multitude components; for example, this could be for bulk component generation or nested components in entity generation.</p>
 <h1 id="properties">Properties</h1>
 <h3 id="id">Id</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ComponentBuilder.Id: String
 </code></pre></div>
-<p>???</p>
+<p>Short Hexidecimal string used to assign an object a unique string for identification </p>
 <h1 id="functions">Functions</h1>
 <h3 id="build">Build</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ComponentBuilder:Build(): { [Number]: Component }
 </code></pre></div>
-<p>???</p>
+<p>Build the array of components. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>local Components = Infinity.ComponentBuilder.new({
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    ComponentName = &quot;ComponentValue&quot;
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>}):Build()
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>--[[
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    {
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        Component -- Value: &quot;ComponentValue&quot;, Name: &quot;ComponentName&quot;
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    }
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>]]
+</code></pre></div>
 <hr />
 <h3 id="update">Update</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ComponentBuilder:Update(ComponentDict: { [String]: Any })
 </code></pre></div>
-<p>???</p>
+<p>Will append the ComponentDict to internal components; When calling <code>:Build</code> these components will be appended onto the array of components</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>local ComponentBuilder = Infinity.ComponentBuilder.new({
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    ComponentName = &quot;ComponentValue&quot;
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>}):Update({
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    ComponentName2 = &quot;ComponentValue2&quot;
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>})
+</code></pre></div>
 <hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Infinity.ComponentBuilder.new(ComponentDict: { [String]: Any }): ComponentBuilder
 </code></pre></div>
-<p>???</p>
+<p>Initiate a new ComponentBuilder object; The first parameter is all the components you would like to initially add.</p>
 <hr />
 <h1 id="code-example">Code Example</h1>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>local PlayerObject = Infinity.Entity.new(
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    Infinity.ComponentBuilder.new({
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        IsLoaded = false,
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        DataLoaded = false,
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        Data = { }
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    })
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>)
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>--[[
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>PlayerObject Entity will have the components; 
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>- IsLoaded
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>- DataLoaded
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>- Data
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>All three of these will be ComponentObjects/
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>]]--
+</code></pre></div>
 
               
             </article>

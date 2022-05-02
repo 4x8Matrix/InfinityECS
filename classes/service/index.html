@@ -546,11 +546,28 @@
 </div>
 <h1 id="functions">Functions</h1>
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Infinity.Service.new(Data: { [Any]: Any })
 </code></pre></div>
-<p>???</p>
-<hr />
+<p>Create a new infinity service, the first parameter is used to define what should already be inside of the service; As an example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Infinity.Service.new({ Name = &quot;MyServiceName&quot; })
+</code></pre></div>
 <h1 id="code-example">Code Example</h1>
+<p>Below is an example on how we might code the structure to play some sounds in our project;</p>
+<p>ScriptA: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>local SoundService = Infinity.Service.new({ Name = &quot;SoundService&quot; })
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>function SoundService:PlaySoundFromSource(Source)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    --&lt;...&gt;
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>end
+</code></pre></div></p>
+<p>ScriptB:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>local SoundService = Infinity:GetService(&quot;SoundService&quot;) -- we could also do: Infinity.SoundService
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>local function OnDeath()
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    SoundService:PlaySoundFromSource(&quot;Assets/DeathSoundEffect.mp3&quot;)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    --&lt;...&gt;
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>end
+</code></pre></div></p>
 
               
             </article>

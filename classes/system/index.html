@@ -547,40 +547,82 @@ It is very bad practice to create a system and use it as a service, api or an ob
 </div>
 <h1 id="properties">Properties</h1>
 <h3 id="id">Id</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>System.Id: String
 </code></pre></div>
-<p>???</p>
+<p>Short Hexidecimal string used to assign an object a unique string for identification </p>
 <h1 id="functions">Functions</h1>
 <h3 id="preupdate">PreUpdate</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>System:PreUpdate(DeltaTime: Number): Boolean
 </code></pre></div>
-<p>???</p>
+<p>PreUpdate is a validation function to validate calling <code>:OnUpdate</code>; This function is fired after every heartbeat (Avg: 60fps)
+If PreUpdate returns false, or an answer in any way that represents a falsey statement, then the <code>:OnUpdate</code> function will be skipped.</p>
+<p>A good use-case for this would be a system you only wanted to update each second, you could easily add in a block of code to fire this event after a second has passed.</p>
+<div class="admonition information">
+<p class="admonition-title">Information</p>
+<p>This function is designed to be overwritten; If your system is loop driven then you would overwrite this function.</p>
+</div>
 <hr />
 <h3 id="onupdate">OnUpdate</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>System:OnUpdate(DeltaTime: Number): Any, Any, ...
 </code></pre></div>
-<p>???</p>
+<p>OnUpdate will be called by the world object every heartbeat (Avg: 60fps)</p>
+<p>Any returns will be fed directly into <code>:PostUpdate</code></p>
+<div class="admonition information">
+<p class="admonition-title">Information</p>
+<p>This function is designed to be overwritten; If your system is loop driven then you would overwrite this function.</p>
+</div>
 <hr />
 <h3 id="postupdate">PostUpdate</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>System:PostUpdate(DeltaTime: Number, ...)
 </code></pre></div>
-<p>???</p>
+<p>PostUpdate will be called after <code>:OnUpdate</code> has been called; The 2nd argument of <code>:PostUpdate</code> will be the results of <code>:OnUpdate</code></p>
+<div class="admonition information">
+<p class="admonition-title">Information</p>
+<p>This function is designed to be overwritten; If your system is loop driven then you would overwrite this function so you would be able to factor in the loop logic.</p>
+</div>
 <hr />
 <h3 id="bind">Bind</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>System:Bind(EventName: String, EventCallback: Function): Function
 </code></pre></div>
-<p>???</p>
+<p>Bind an event listener to the system,
+The resulting function should be used to disconnect the current event listener</p>
 <hr />
 <h3 id="fire">Fire</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>System:Fire(EventName: String, ...)
 </code></pre></div>
-<p>???</p>
+<p>Fire event event listeners binded to <code>EventName</code> with the arguments of <code>...</code></p>
 <hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Infinity.System.new(): System
 </code></pre></div>
-<p>???</p>
+<p>Initiate a new system object</p>
 <hr />
+<h1 id="code-example">Code Example</h1>
+<p>The code below will show an example on how we coulduse a System;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>local System = Infinity.System.new()
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>System.Time = 0
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>function System:PreUpdate(DeltaTime)
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    self.Time = self.Time + DeltaTime
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    if self.Time &gt; 1 then
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        return true
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    end
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>end
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>-- This will only be fired if `PreUpdate` returns true
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>function System:OnUpdate()
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    print(&quot;This is fired each second!&quot;)
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    print(&quot;SecondDeltaTime:&quot;, self.Time - 1)
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>end
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>-- This will only be fired if `PreUpdate` returns true
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>function System:PostUpdate()
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>    self.Time = 0
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>end
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>Infinity.World:AddSystems(System)
+</code></pre></div></p>
 
               
             </article>

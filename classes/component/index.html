@@ -542,55 +542,96 @@
 <p>A component is one of the three elements that build the ECS architecture; This is a piece of data used to influence the behaviour of an entity, world or system.</p>
 <h1 id="properties">Properties</h1>
 <h3 id="name">Name</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Component.Name: String
 </code></pre></div>
-<p>???</p>
+<p>The given name of a component object</p>
 <hr />
 <h3 id="id">Id</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Component.Id: String
 </code></pre></div>
-<p>???</p>
+<p>Short Hexidecimal string used to assign an object a unique string for identification </p>
 <h1 id="functions">Functions</h1>
 <h3 id="destroy">Destroy</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Component:Destroy(): nil
 </code></pre></div>
-<p>???</p>
+<p>Used to remove a component; Invalidate the component so it's use is no longer valid</p>
 <hr />
 <h3 id="concat">Concat</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Component:Concat(Source: String)
 </code></pre></div>
-<p>???</p>
+<p>Will attempt to perform a concentration operation on the data the component is storing</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you attempt to do this on an illegal type; Such as a table then this function will raise an exception.</p>
+</div>
 <hr />
 <h3 id="inc">Inc</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Component:Inc(Int: Number)
 </code></pre></div>
-<p>???</p>
+<p>Will attempt to perform an increment operation on the data the component is storing </p>
 <hr />
 <h3 id="is">Is</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Component:Is(...: Any): Any | nil
 </code></pre></div>
-<p>???</p>
+<p>Will compare the data the component is storing to all variations inside of the parameters</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>local Component = Infinity.Component.new(&quot;MyRawDataValue&quot;)
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>print(Component:Is(&quot;MyDataValue&quot;)) -- &gt; nil
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>print(Component:Is(&quot;MyRawDataValue&quot;)) -- &gt; MyRawDataValue
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>print(Component:Is(&quot;MyDataValue&quot;, &quot;MyRawDataValue&quot;)) -- &gt; MyRawDataValue
+</code></pre></div>
 <hr />
 <h3 id="iter">Iter</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Component:Iter(): (Any, Any) | nil
 </code></pre></div>
-<p>???</p>
+<p>Will attempt to iterate through the data the component is storing</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>local Component = Infinity.Component.new({ &quot;Abc&quot;, &quot;123&quot; })
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>for Index, Value in Component:Iter() do
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    print(Index, Value)
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>end
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>--[[
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    1 Abc
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    2 123
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>]]--
+</code></pre></div>
 <hr />
 <h3 id="set">Set</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Component:Set(Value: Any)
 </code></pre></div>
-<p>???</p>
+<p>Will attempt to set the value of the component, overwriting any previous values.</p>
 <hr />
 <h3 id="type">Type</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Component:Type(): String
 </code></pre></div>
-<p>???</p>
+<p>Return the type of data that it is storing, for example a component could be storing a string, userdata, number etc</p>
+<hr />
+<h3 id="equal">Equal</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Component:Equal(Component: Component): Boolean
+</code></pre></div>
+<p>Attempt to compare the two component objects, not the data.</p>
 <hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Component.new(Value: Any, Name: String): Component
 </code></pre></div>
-<p>???</p>
+<p>Constructor for component objects, this is how you'll create components.</p>
 <h1 id="code-example">Code Example</h1>
+<p>Below is a code example on how we could use some of the above functions;</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>local HealthComponent = Infinity.Component.new(100, &quot;Health&quot;)
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>local MaxHealthComponent = Infinity.Component.new(100, &quot;MaxHealth&quot;)
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>local function TakeDamage(Damage: Int)
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    HealthComponent:Inc(-Damage)
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    if HealthComponent:Get() &lt; MaxHealthComponent:Get() then
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>        print(&quot;Entity has died!&quot;)
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        Infinity:Sleep(5)
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        HealthComponent:Set(MaxHealthComponent:Get())
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    end
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>end
+</code></pre></div>
 
               
             </article>

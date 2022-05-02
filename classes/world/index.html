@@ -547,57 +547,89 @@ Imagine the world being a space, inside this space will be your systems &amp; en
 <p>If roblox is the environment the framework is being ran in, then the World class will be constructed during runtime of the Infinity Module.
 For more information please visit <code>Classes</code> -&gt; <code>Infinity</code></p>
 </div>
+<h1 id="properties">Properties</h1>
+<h3 id="name">Name</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>World.Name: String
+</code></pre></div>
+<p>The given name of a World object</p>
+<hr />
+<h3 id="id">Id</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>World.Id: String
+</code></pre></div>
+<p>Short Hexidecimal string used to assign an object a unique string for identification </p>
 <h1 id="functions">Functions</h1>
 <h3 id="addentities">AddEntities</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>World:AddEntities(EntityA: EntityObject, EntityB: EntityObject, ...)
 </code></pre></div>
-<p>???</p>
+<p>Add a list of Entities into the world registry</p>
 <hr />
 <h3 id="addsystems">AddSystems</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>World:AddSystems(SystemA: SystemObject, SystemB: SystemObject, ...)
 </code></pre></div>
-<p>???</p>
+<p>Add a list of Systems into the world registry</p>
 <hr />
 <h3 id="getentitiesfromarchetype">GetEntitiesFromArchetype</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>World:GetEntitiesFromArchetype(Archetype: ArchetypeObject): { [Number]: EntityObject }
 </code></pre></div>
-<p>???</p>
+<p>Returns a collection of entity object which match the archetype specified</p>
 <hr />
 <h3 id="getentitiesfromcomponents">GetEntitiesFromComponents</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>World:GetEntitiesFromComponents(ComponentA: ComponentObject, ComponentB: ComponentObject): { [Number]: EntityObject }
 </code></pre></div>
-<p>???</p>
+<p>Returns a collection of entity object which match the components specified</p>
 <hr />
 <h3 id="getentitiesfromname">GetEntitiesFromName</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>World:GetEntitiesFromName(Name: String): { [Number]: EntityObject }
 </code></pre></div>
-<p>???</p>
+<p>Returns a collection of entity object which match the name specified</p>
 <hr />
 <h3 id="setstate">SetState</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>World:SetState(State: Boolean)
 </code></pre></div>
-<p>???</p>
+<p>Set the world state to active/inactive; When the world is inactive, all of the worlds systems, entities and components become idle.</p>
 <hr />
 <h3 id="push">Push</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>World:Push(EventName: String, ...)
 </code></pre></div>
-<p>???</p>
+<p>Push an event to all systems binded to the world</p>
 <hr />
 <h3 id="update">Update</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>World:Update(DeltaTime: Number)
 </code></pre></div>
-<p>???</p>
+<p>Update all systems binded to the world</p>
 <hr />
 <h3 id="destroy">Destroy</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>World:Destroy()
 </code></pre></div>
-<p>???</p>
+<p>Destroy all systems, entities and components. Then remove itself from the programs memory</p>
 <hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Infinity.World.new(Entities: { [Number]: EntityObject }, Name: String)
 </code></pre></div>
-<p>???</p>
+<p>Initiate a new world object</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If Infinity is being ran on a roblox environment, <code>Infinity.World</code> will be a WorldObject, it is not advised to create a new world object over the default world which will automaically be created.</p>
+</div>
 <h1 id="code-sample">Code Sample</h1>
+<p>In the below example, we create one player and three bad guys inside of the same world.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>local WorldObject = Infinity.World.new({
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    Infinity.Entity.new({
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>        Infinity.Component.new(&quot;SuperCoolName&quot;, &quot;ObjectName&quot;)
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    }, &quot;Player&quot;),
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    Infinity.Entity.new({
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        Infinity.Component.new(&quot;SuperCoolName&quot;, &quot;ObjectName&quot;)
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    }, &quot;BadGuy&quot;),
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    Infinity.Entity.new({
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>        Infinity.Component.new(&quot;SuperCoolName&quot;, &quot;ObjectName&quot;)
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    }, &quot;BadGuy&quot;),
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    Infinity.Entity.new({
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        Infinity.Component.new(&quot;SuperCoolName&quot;, &quot;ObjectName&quot;)
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    }, &quot;BadGuy&quot;)
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>})
+</code></pre></div></p>
+<p>What our systems should do is then add logic to these entities and components; For example a System would collect all entities with the name "Player" and have it take 5 HP from all bad guys.</p>
 
               
             </article>
