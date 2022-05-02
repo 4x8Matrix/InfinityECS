@@ -1,0 +1,84 @@
+site_name:                    InfinityECS
+site_url:                     https://4x8matrix.github.io/
+site_description:             InfinityECS API Docs
+
+repo_url:                     https://github.com/4x8Matrix/InfinityECS
+repo_name:                    4x8Matrix/InfinityECS
+
+docs_dir:                     pages
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - tables
+  - admonition
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+
+theme:
+  name:                       material
+
+  logo:                       assets/images/icon.png
+  favicon:                    assets/images/favicon.ico
+  icon:
+    repo:                     fontawesome/brands/git-alt
+
+  features:
+    - content.code.annotate
+    - toc.integrate
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+
+  palette:
+    - media:                  "(prefers-color-scheme: dark)"
+      scheme:                 slate
+      primary:                blue
+      accent:                 light blue
+      toggle:
+        icon:                 material/toggle-switch-off-outline 
+        name:                 Switch to light mode
+
+    - media:                  "(prefers-color-scheme: light)"
+      scheme:                 default
+      primary:                blue
+      accent:                 light blue
+      toggle:
+        icon:                 material/toggle-switch
+        name:                 Switch to dark mode
+
+nav:
+  - Home:                     index.md
+  - Installation:             install.md
+
+  - Classes:
+    - Infinity:               classes\infinity.md
+    - World:                  classes\world.md
+    - Entity:                 classes\entity.md
+    - Component:              classes\component.md
+    - ComponentBuilder:       classes\componentBuilder.md
+    - System:                 classes\system.md
+    - Service:                classes\service.md
+    - Query:                  classes\query.md
+    
+  - Internal:
+    - EntityManager:          internal\entityManager.md
+    - EntityArchetype:        internal\entityArchetype.md
+    - SystemClock:            internal\systemClock.md
+    - SystemController:       internal\systemController.md
+
+extra:
+  generator:                  false
+  version:                    2.0
+
+  analytics:
+    provider:                 google
+    property:                 G-YX8LLZ31C8
+
+  social:
+    - icon:                   fontawesome/brands/discord
+      link:                   https://discord.gg/y6amckh
+      name:                   InfinityECS's Discord server

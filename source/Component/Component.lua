@@ -41,8 +41,12 @@ return function(Infinity)
     end
 
     -- // Functions
+	function Component:Destroy()
+		setmetatable(self, { __mode = "kv" })
+	end
+
     function Component:Concat(val)
-        self._Data = self._Data .. (type(val) ~= "function" and val) or val(self._Data)
+        self._Data = self._Data .. (type(val) == "function" and val(self._Data)) or val
     end
 
     function Component:Inc(val)
@@ -50,7 +54,7 @@ return function(Infinity)
     end
 
     function Component:Is(val)
-        local States = { (type(val) ~= "function" and val) or val(self._Data) }
+        local States = { (type(val) == "function" and val(self._Data)) or val}
 
         for _, state in ipairs(States) do
             if state == self._Data then return true end

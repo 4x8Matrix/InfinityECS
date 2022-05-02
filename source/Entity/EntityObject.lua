@@ -23,7 +23,12 @@ return function(Infinity)
 
     -- // Entity Functions
     function Entity:Destroy() 
-    
+		for Name, Component in pairs(self.Components) do
+			Component:Destroy()
+			self.Components[Name] = nil
+		end
+
+		setmetatable(self, { __mode = "kv" })
     end
 
     function Entity:Iter()
@@ -43,10 +48,27 @@ return function(Infinity)
         Infinity.EntityManager:Manage(self)
     end
 
+	function Entity:AddComponents(...)
+		for _, Component in ipairs({ ... }) do
+			self.Components[Component.Name] = Infinity.Component.new(Value._Data)
+
+			Infinity.EntityManager:Manage(self)
+		end
+    end
+
     function Entity:RemoveComponent(Name)
         self.Components[Name] = nil
 
         Infinity.EntityManager:Manage(self)
+    end
+
+	function Entity:RemoveComponents(...)
+		for _, Name in ipairs({ ... }) do
+			self.Components[Name]:Destroy()
+			self.Components[Name] = nil
+
+			Infinity.EntityManager:Manage(self)
+		end
     end
 
     function Entity:GetComponentFromType(Type)

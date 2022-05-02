@@ -52,6 +52,10 @@ function Infinity:GetService(ServiceName)
 	return self._Cache[ServiceName]
 end
 
+function Infinity:Sleep(Int)
+	return self.SystemClock:ResumeIn(Int)
+end
+
 function Infinity:_Hex(Size)
 	local HexValues = ""
 
