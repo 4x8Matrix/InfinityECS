@@ -100,14 +100,10 @@ return function(Infinity)
         return self
     end
     
-    function Query:Find(ComponentNames)
-        if type(ComponentNames) ~= "table" then 
-            table.insert(self.Components, ComponentNames)
-        else
-            for _, ComponentName in ipairs(ComponentNames) do
-                table.insert(self.Components, ComponentName)
-            end
-        end
+    function Query:Find(...)
+		for _, ComponentName in ipairs({ ... }) do
+			table.insert(self.Components, ComponentName)
+		end
 
         return self
     end

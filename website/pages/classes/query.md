@@ -6,58 +6,90 @@ the query class can return two types of arrays, strict arrays and non-strict arr
 # Properties
 ### Id
 ```
-
+Query.Id: String
 ```
 
-???
+Short Hexidecimal string used to assign an object a unique string for identification 
 
 # Functions
 ### GetResult
 ```
-
+Query:GetResult(): { [Number]: EntityObjects }
 ```
 
-???
+Computes and returns the result of the query.
 
 ---
 ### Strict
 ```
-
+Query:Strict(): QueryObject
 ```
 
-???
+Sets the query mode to strict.
 
 ---
 ### Unstrict
 ```
-
+Query:Unstrict(): QueryObject
 ```
 
-???
+Sets the query mode to unstrict.
+
 
 ---
 ### Find
 ```
-
+Query:Find(ComponentAName: String, ComponentBName: String, ...): QueryObject
 ```
 
-???
+Append the ComponentNames to the internal query registry
 
 ---
 ### Filter
 ```
-
+Query:Filter(Callback: Function): QueryObject
 ```
 
-???
+Create a translatin function to help identify what entities you want as a result of this query.
+
+```
+local Query = Infinity.Query.new(Infinity.World):Filter(function(Entity, Component)
+	if Entity.Name == "SpecialCaseEntity" then
+		-- We dont want to include the special case, however it has all the same components that we're searching for.
+
+		return false
+	else
+		return true
+	end
+end)
+
+```
 
 ---
 ### new
 ```
-
+Infinity.Query.new(Infinity.World)
 ```
 
-???
+Initiate a new query object, you need to specify what world you'd want to run the query object in.
 
 ---
 # Code Example
+An example of getting all entities in a world that have a specific component.
+```
+local Component = Infinity.Component.new("Data", "ComponentExample")
+local World = Infinity.World.new({ 
+	Infinity.Entity.new(
+		{ Component },
+		"EntityName"
+	)
+}, "MyWorld")
+
+-- <...>
+
+local Entities = Infinity.Query.new(World):Find("ComponentExample"):Filter(function(Entity)
+	return Entity.Name == EntityName
+end):GetResult()
+
+print(Entities[1]) -- > EntityName, the entity we created on our third line.
+```

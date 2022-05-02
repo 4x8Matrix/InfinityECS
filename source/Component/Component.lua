@@ -53,11 +53,11 @@ return function(Infinity)
         self._Data = self._Data + (type(val) ~= "function" and val) or val(self._Data)
     end
 
-    function Component:Is(val)
-        local States = { (type(val) == "function" and val(self._Data)) or val}
+    function Component:Is(...)
+        local States = { ... }
 
-        for _, state in ipairs(States) do
-            if state == self._Data then return true end
+        for _, State in ipairs(States) do
+            if State == self._Data then return State end
         end
     end
 
@@ -86,6 +86,10 @@ return function(Infinity)
 
     function Component:Set(val)
         self._Data = (type(val) ~= "function" and val) or val(self._Data)
+    end
+
+	function Component:Get(val)
+        return self._Data
     end
 
     function Component:Equal(Target)

@@ -50,8 +50,8 @@ return function(Infinity)
         return Entities
     end
 
-    function WorldObject:GetEntitiesFromComponents(Components)
-        local Entities = { }
+    function WorldObject:GetEntitiesFromComponents(...)
+        local Entities, Components = { }, { ... }
         
         for _, Entity in ipairs(self._Entities) do
             for _, TargetComponent in ipairs(Components) do

@@ -71,7 +71,7 @@ return function(Infinity)
 		end
     end
 
-    function Entity:GetComponentFromType(Type)
+    function Entity:GetComponentsFromType(Type)
         local Components = { }
 
         assert(Type ~= nil, "Expected Argument #1 Type")

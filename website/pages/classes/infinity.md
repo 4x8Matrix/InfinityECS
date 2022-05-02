@@ -34,96 +34,105 @@ If `Infinity.IsRoblox` is active then `Infinity.IsServer` then this will define 
 # Classes
 ### World
 ```
-
+Infinity.World: World
 ```
 
-???
+Reference to the Infinity World Object
 
 ---
 ### Query
 ```
-
+Infinity.Query: Query
 ```
 
-???
+Reference to the Infinity Query Object
 
 ---
 ### Service
 ```
-
+Infinity.Service: Service
 ```
 
-???
+Reference to the Infinity Service Object
 
 ---
 ### Component
 ```
-
+Infinity.Component: Component
 ```
 
-???
+Reference to the Infinity Component Object
 
 ---
 ### ComponentBuilder
 ```
-
+Infinity.ComponentBuilder: ComponentBuilder
 ```
 
-???
+Reference to the Infinity ComponentBuilder Object
 
 ---
 ### EntityManager
 ```
-
+Infinity.EntityManager: EntityManager
 ```
 
-???
+Reference to the Infinity EntityManager Object
 
 ---
 ### Archetype
 ```
-
+Infinity.Archetype: EntityArchetype
 ```
 
-???
+Reference to the Infinity EntityArchetype Object
 
 ---
 ### Entity
 ```
-
+Infinity.Entity: Entity
 ```
 
-???
+Reference to the Infinity Entity Object
 
 ---
 ### System
 ```
-
+Infinity.System: System
 ```
 
-???
+Reference to the Infinity System Object
 
 ---
 ### SystemController
 ```
-
+Infinity.SystemController: SystemController
 ```
 
-???
+Reference to the Infinity SystemController Object
 # Functions
 ### GetService
 ```
-
+Infinity:GetService(ServiceName: String)
 ```
 
-???
+Attempt to grab either an Infinity Service or Roblox Service through it's ServiceName
 
 ---
 ### Update
 ```
-
+Infinity:Update(DeltaTime: Number)
 ```
 
-???
+Update the internal InfinityClock, this should only be called when Infinity is not being ran under a roblox environment; 
+It is recomended to call the `Update` function each render, heartbeat or step inside of your program. 
 
 # Code Sample
+Below is a demo on how Love could run Infinity
+```
+local Infinity = require(".../Infinity")
+
+function love.draw()
+	Infinity:Update()
+end
+```
