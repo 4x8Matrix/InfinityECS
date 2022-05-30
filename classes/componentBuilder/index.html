@@ -464,6 +464,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../internal/json/" class="md-nav__link">
+        JSON
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../internal/entityManager/" class="md-nav__link">
         EntityManager
       </a>
@@ -562,7 +576,7 @@
 </code></pre></div>
 <hr />
 <h3 id="update">Update</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ComponentBuilder:Update(ComponentDict: { [String]: Any })
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ComponentBuilder:Update(ComponentDict: { [String]: Any }): ComponentBuilder
 </code></pre></div>
 <p>Will append the ComponentDict to internal components; When calling <code>:Build</code> these components will be appended onto the array of components</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>local ComponentBuilder = Infinity.ComponentBuilder.new({
@@ -578,13 +592,13 @@
 <p>Initiate a new ComponentBuilder object; The first parameter is all the components you would like to initially add.</p>
 <hr />
 <h1 id="code-example">Code Example</h1>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>local PlayerObject = Infinity.Entity.new(
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>local PlayerObject = Infinity.Entity.new({
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    Infinity.ComponentBuilder.new({
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        IsLoaded = false,
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        DataLoaded = false,
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        Data = { }
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    })
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>)
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    }):Build()
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>})
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>--[[
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>PlayerObject Entity will have the components; 

@@ -464,6 +464,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../internal/json/" class="md-nav__link">
+        JSON
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../internal/entityManager/" class="md-nav__link">
         EntityManager
       </a>
@@ -608,15 +622,25 @@
 </code></pre></div>
 <p>Create a replica entity, however, the child entity will have a Super reference</p>
 <hr />
+<h3 id="tojson">ToJSON</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Entity:ToJSON(): String
+</code></pre></div>
+<p>Serialise the entity into a JSON string, a good use case for this would be replication of entities over a network</p>
+<hr />
+<h3 id="fromjson">FromJSON</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Entity:FromJSON(JSON: String): Entity
+</code></pre></div>
+<p>Initiate a new entity from a JSON string generated from <code>Entity.ToJSON</code></p>
+<hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Infinity.Entity.new(ComponentsArray: { [Number]: ComponentObject }, Name: String)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Infinity.Entity.new(ComponentsArray: { [Number]: ComponentObject }, Name: String)
 </code></pre></div>
 <p>Initiate a new Entity object</p>
 <h1 id="code-sample">Code Sample</h1>
 <p>Below will be an example of a player entity</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>local PlayerObject = Infinity.Entity.new({
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    Infinity.Component.new(&quot;SuperCoolName&quot;, &quot;PlayerName&quot;)
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>})
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>local PlayerObject = Infinity.Entity.new({
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    Infinity.Component.new(&quot;PlayerData&quot;, 1000)
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>}, &quot;PlayerName&quot;)
 </code></pre></div>
 
               
