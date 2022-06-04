@@ -1,0 +1,14 @@
+{
+  	"name": "Infinity",
+  	"tree": {
+		"$className": "DataModel",
+
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+		
+	 	 	"Infinity": {
+				"$path": "source"
+	  		}
+		}
+  	}
+}

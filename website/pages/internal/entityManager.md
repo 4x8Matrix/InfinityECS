@@ -1,0 +1,2 @@
+The EntityManager's purpose is to provide a stable internal service to manage entities & their archetypes.
+Every time you initialise a new Entity or add new components to an entity, the entity manager will re-initialise that entities archetype

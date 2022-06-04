@@ -1,0 +1,1 @@
+The EntityArchetype is a combination of component types, every entity inside of your world will have an archetype account for it; The EntityManager handles the EntityArchetype relationship to Entity classes. 
