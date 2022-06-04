@@ -464,20 +464,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../internal/json/" class="md-nav__link">
-        JSON
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../internal/entityManager/" class="md-nav__link">
         EntityManager
       </a>
@@ -576,48 +562,62 @@
 </code></pre></div>
 <p>Sets the query mode to unstrict.</p>
 <hr />
+<h3 id="fromname">FromName</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Query:FromName(EntityAName: String, EntityBName: String, ...): QueryObject
+</code></pre></div>
+<p>Append a list of entity names to be queried</p>
+<hr />
+<h3 id="fromcomponents">FromComponents</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Query:Find(ComponentAName: String, ComponentBName: String, ...): QueryObject
+</code></pre></div>
+<p>Append a list of component names to be queried </p>
+<hr />
 <h3 id="find">Find</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Query:Find(ComponentAName: String, ComponentBName: String, ...): QueryObject
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Query:Find(ComponentAName: String, ComponentBName: String, ...): QueryObject
 </code></pre></div>
 <p>Append the ComponentNames to the internal query registry</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method has recently been deprecated, please use <code>Query.FromComponents</code> instead!</p>
+</div>
 <hr />
 <h3 id="filter">Filter</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Query:Filter(Callback: Function): QueryObject
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Query:Filter(Callback: Function): QueryObject
 </code></pre></div>
-<p>Create a translatin function to help identify what entities you want as a result of this query.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>local Query = Infinity.Query.new(Infinity.World):Filter(function(Entity, Component)
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    if Entity.Name == &quot;SpecialCaseEntity&quot; then
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        -- We dont want to include the special case, however it has all the same components that we&#39;re searching for.
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        return false
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    else
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        return true
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    end
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>end)
+<p>Create a translating function to help identify what entities you want as a result of this query.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>local Query = Infinity.Query.new(Infinity.World):Filter(function(Entity, Component)
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    if Entity.Name == &quot;SpecialCaseEntity&quot; then
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        -- We dont want to include the special case, however it has all the same components that we&#39;re searching for.
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        return false
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    else
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        return true
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    end
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>end)
 </code></pre></div>
 <hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Infinity.Query.new(Infinity.World)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Infinity.Query.new(Infinity.World)
 </code></pre></div>
 <p>Initiate a new query object, you need to specify what world you'd want to run the query object in.</p>
 <hr />
 <h1 id="code-example">Code Example</h1>
 <p>An example of getting all entities in a world that have a specific component.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>local Component = Infinity.Component.new(&quot;Data&quot;, &quot;ComponentExample&quot;)
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>local World = Infinity.World.new({ 
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    Infinity.Entity.new(
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        { Component },
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        &quot;EntityName&quot;
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    )
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>}, &quot;MyWorld&quot;)
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>-- &lt;...&gt;
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>local Entities = Infinity.Query.new(World):Find(&quot;ComponentExample&quot;):Filter(function(Entity)
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    return Entity.Name == EntityName
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>end):GetResult()
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>print(Entities[1]) -- &gt; EntityName, the entity we created on our third line.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>local Component = Infinity.Component.new(&quot;Data&quot;, &quot;ComponentExample&quot;)
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>local World = Infinity.World.new({ 
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    Infinity.Entity.new(
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        { Component },
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        &quot;EntityName&quot;
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    )
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>}, &quot;MyWorld&quot;)
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>-- &lt;...&gt;
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>local Entities = Infinity.Query.new(World):Find(&quot;ComponentExample&quot;):Filter(function(Entity)
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    return Entity.Name == EntityName
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>end):GetResult()
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>print(Entities[1]) -- &gt; EntityName, the entity we created on our third line.
 </code></pre></div></p>
 
               
@@ -648,13 +648,13 @@
       
       
         
-        <a href="../../internal/json/" class="md-footer__link md-footer__link--next" aria-label="Next: JSON" rel="next">
+        <a href="../../internal/entityManager/" class="md-footer__link md-footer__link--next" aria-label="Next: EntityManager" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              JSON
+              EntityManager
             </div>
           </div>
           <div class="md-footer__button md-icon">

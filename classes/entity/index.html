@@ -464,20 +464,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../internal/json/" class="md-nav__link">
-        JSON
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../internal/entityManager/" class="md-nav__link">
         EntityManager
       </a>
@@ -584,63 +570,68 @@
 </code></pre></div>
 <p>Destroys all components attached to the entity object, then will proceed in removing itself from the programs memory.</p>
 <hr />
+<h3 id="fromjson">FromJSON</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Entity.FromJSON(string): Entity
+</code></pre></div>
+<p>initiates a new entity object from the json string</p>
+<hr />
+<h3 id="tojson">ToJSON</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Entity:ToJSON(): string
+</code></pre></div>
+<p>serialises the entity into a JSON string</p>
+<hr />
 <h3 id="iter">Iter</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Entity:Iter()
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Entity:Iter()
 </code></pre></div>
 <p>Iterate through the Entities components</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>for ComponentName, Component in Entity:Iter() do
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    print(ComponentName, Component)
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>end
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>for ComponentName, Component in Entity:Iter() do
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    print(ComponentName, Component)
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>end
 </code></pre></div>
 <hr />
 <h3 id="addcomponent">AddComponent</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Entity:AddComponent(Component)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Entity:AddComponent(Component)
 </code></pre></div>
 <p>Adds a single component to the entities registry</p>
 <hr />
 <h3 id="addcomponents">AddComponents</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Entity:AddComponents(ComponentA, ComponentB, ...)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Entity:AddComponents(ComponentA, ComponentB, ...)
 </code></pre></div>
 <p>Adds a multiple components to the entities registry</p>
 <hr />
 <h3 id="removecomponent">RemoveComponent</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Entity:RemoveComponent(ComponentName)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Entity:RemoveComponent(ComponentName)
 </code></pre></div>
 <p>Removes a single component from the entities registry</p>
 <hr />
 <h3 id="removecomponents">RemoveComponents</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Entity:RemoveComponents(ComponentAName, ComponentBName, ...)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Entity:RemoveComponents(ComponentAName, ComponentBName, ...)
 </code></pre></div>
 <p>Removes a multiple components from the entities registry</p>
 <hr />
+<h3 id="getcomponent">GetComponent</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Entity:GetComponent(ComponentName)
+</code></pre></div>
+<p>Returns the component with the name <code>ComponentName</code></p>
+<hr />
 <h3 id="getcomponentsfromtype">GetComponentsFromType</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Entity:GetComponentsFromType(Type: String)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Entity:GetComponentsFromType(Type: String)
 </code></pre></div>
 <h2 id="construct-an-array-with-all-entity-components-that-have-the-specific-type">Construct an array with all entity components that have the specific type</h2>
 <h3 id="extend">Extend</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Entity:Extend()
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Entity:Extend()
 </code></pre></div>
 <p>Create a replica entity, however, the child entity will have a Super reference</p>
 <hr />
-<h3 id="tojson">ToJSON</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Entity:ToJSON(): String
-</code></pre></div>
-<p>Serialise the entity into a JSON string, a good use case for this would be replication of entities over a network</p>
-<hr />
-<h3 id="fromjson">FromJSON</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Entity:FromJSON(JSON: String): Entity
-</code></pre></div>
-<p>Initiate a new entity from a JSON string generated from <code>Entity.ToJSON</code></p>
-<hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Infinity.Entity.new(ComponentsArray: { [Number]: ComponentObject }, Name: String)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Infinity.Entity.new(ComponentsArray: { [Number]: ComponentObject }, Name: String)
 </code></pre></div>
 <p>Initiate a new Entity object</p>
 <h1 id="code-sample">Code Sample</h1>
 <p>Below will be an example of a player entity</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>local PlayerObject = Infinity.Entity.new({
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    Infinity.Component.new(&quot;PlayerData&quot;, 1000)
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>}, &quot;PlayerName&quot;)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>local PlayerObject = Infinity.Entity.new({
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    Infinity.Component.new(&quot;SuperCoolName&quot;, &quot;PlayerName&quot;)
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>})
 </code></pre></div>
 
               

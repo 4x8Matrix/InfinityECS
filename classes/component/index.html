@@ -464,20 +464,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../internal/json/" class="md-nav__link">
-        JSON
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../internal/entityManager/" class="md-nav__link">
         EntityManager
       </a>
@@ -579,82 +565,72 @@
 <p>If you attempt to do this on an illegal type; Such as a table then this function will raise an exception.</p>
 </div>
 <hr />
-<h3 id="update">Update</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Component:Update(Value: Any)
-</code></pre></div>
-<p>Will call any replicator callbacks attached to the component, <code>Value</code> will be what the component is being set to.</p>
-<hr />
-<h3 id="replicator">Replicator</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Component:Replicator(Callback: Function): Function
-</code></pre></div>
-<p>Bind a function that will listen to any changes to the component.</p>
-<hr />
 <h3 id="inc">Inc</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Component:Inc(Int: Number)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Component:Inc(Int: Number)
 </code></pre></div>
 <p>Will attempt to perform an increment operation on the data the component is storing </p>
 <hr />
 <h3 id="is">Is</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Component:Is(...: Any): Any | nil
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Component:Is(...: Any): Any | nil
 </code></pre></div>
 <p>Will compare the data the component is storing to all variations inside of the parameters</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>local Component = Infinity.Component.new(&quot;MyRawDataValue&quot;)
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>print(Component:Is(&quot;MyDataValue&quot;)) -- &gt; nil
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>print(Component:Is(&quot;MyRawDataValue&quot;)) -- &gt; MyRawDataValue
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>print(Component:Is(&quot;MyDataValue&quot;, &quot;MyRawDataValue&quot;)) -- &gt; MyRawDataValue
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>local Component = Infinity.Component.new(&quot;MyRawDataValue&quot;)
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>print(Component:Is(&quot;MyDataValue&quot;)) -- &gt; nil
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>print(Component:Is(&quot;MyRawDataValue&quot;)) -- &gt; MyRawDataValue
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>print(Component:Is(&quot;MyDataValue&quot;, &quot;MyRawDataValue&quot;)) -- &gt; MyRawDataValue
 </code></pre></div>
 <hr />
 <h3 id="iter">Iter</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Component:Iter(): (Any, Any) | nil
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Component:Iter(): (Any, Any) | nil
 </code></pre></div>
 <p>Will attempt to iterate through the data the component is storing</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>local Component = Infinity.Component.new({ &quot;Abc&quot;, &quot;123&quot; })
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>for Index, Value in Component:Iter() do
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    print(Index, Value)
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>end
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>--[[
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    1 Abc
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    2 123
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>]]--
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>local Component = Infinity.Component.new({ &quot;Abc&quot;, &quot;123&quot; })
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>for Index, Value in Component:Iter() do
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    print(Index, Value)
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>end
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>--[[
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    1 Abc
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    2 123
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>]]--
 </code></pre></div>
 <hr />
 <h3 id="set">Set</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Component:Set(Value: Any)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Component:Set(Value: Any)
 </code></pre></div>
 <p>Will attempt to set the value of the component, overwriting any previous values.</p>
 <hr />
 <h3 id="type">Type</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Component:Type(): String
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Component:Type(): String
 </code></pre></div>
 <p>Return the type of data that it is storing, for example a component could be storing a string, userdata, number etc</p>
 <hr />
 <h3 id="equal">Equal</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Component:Equal(Component: Component): Boolean
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Component:Equal(Component: Component): Boolean
 </code></pre></div>
 <p>Attempt to compare the two component objects, not the data.</p>
 <hr />
 <h3 id="new">new</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Component.new(Value: Any, Name: String): Component
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Component.new(Value: Any, Name: String): Component
 </code></pre></div>
 <p>Constructor for component objects, this is how you'll create components.</p>
 <h1 id="code-example">Code Example</h1>
 <p>Below is a code example on how we could use some of the above functions;</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>local HealthComponent = Infinity.Component.new(100, &quot;Health&quot;)
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>local MaxHealthComponent = Infinity.Component.new(100, &quot;MaxHealth&quot;)
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>local function TakeDamage(Damage: Int)
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    HealthComponent:Inc(-Damage)
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    if HealthComponent:Get() &lt; MaxHealthComponent:Get() then
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        print(&quot;Entity has died!&quot;)
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>        Infinity:Sleep(5)
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>        HealthComponent:Set(MaxHealthComponent:Get())
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    end
-<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>end
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>local HealthComponent = Infinity.Component.new(100, &quot;Health&quot;)
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>local MaxHealthComponent = Infinity.Component.new(100, &quot;MaxHealth&quot;)
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>local function TakeDamage(Damage: Int)
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    HealthComponent:Inc(-Damage)
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    if HealthComponent:Get() &lt; MaxHealthComponent:Get() then
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>        print(&quot;Entity has died!&quot;)
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        Infinity:Sleep(5)
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        HealthComponent:Set(MaxHealthComponent:Get())
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    end
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>end
 </code></pre></div>
 
               
