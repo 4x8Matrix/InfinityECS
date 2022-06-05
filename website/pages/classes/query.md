@@ -47,7 +47,7 @@ Append a list of entity names to be queried
 ---
 ### FromComponents
 ```
-Query:Find(ComponentAName: String, ComponentBName: String, ...): QueryObject
+Query:FromComponents(ComponentAName: String, ComponentBName: String, ...): QueryObject
 ```
 
 Append a list of component names to be queried 

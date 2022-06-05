@@ -65,7 +65,7 @@ return function(Infinity)
 			for _, EntityName in ipairs(self.Names) do
 				if Entity.Name == EntityName then
 					if self.FilterCallback then
-						if self.FilterCallback(Entity, Component) then
+						if self.FilterCallback(Entity) then
 							table.insert(Entities, Entity)
 							
 							break
@@ -80,7 +80,7 @@ return function(Infinity)
 				end
 			end
 
-			if IsEntityNameValid then
+			if not IsEntityNameValid then
 				for ComponentName, Component in pairs(Entity.Components) do
 					local ComponentInEntity
 
