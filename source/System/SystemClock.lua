@@ -17,11 +17,11 @@ return function(Infinity)
         return self.Name
     end
 
-	function Clock:Resume(...)
-		local Success, Result = coroutine.resume(...)
+	function Clock:Resume(Routine, ...)
+		local Success, Result = coroutine.resume(Routine, ...)
 
 		if not Success then
-			return error(string.format("%s\n%s", Result, debug.traceback()))
+			return error(string.format("%s\n%s", Result, debug.traceback(Routine)), math.huge)
 		end
 	end
 
