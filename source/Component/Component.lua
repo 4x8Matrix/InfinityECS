@@ -23,6 +23,22 @@ return function(Infinity)
         return string.format("Component [ %s ]", self.Name or self.Id)
     end
 
+	function Component:__div(Value)
+		return self._Data / Value
+	end
+	
+	function Component:__mul(Value)
+		return self._Data * Value
+	end
+	
+	function Component:__sub(Value)
+		return self._Data - Value
+	end
+	
+	function Component:__add(Value)
+		return self._Data + Value
+	end
+
     -- // EOL Functions
     local fillTable do
         fillTable = function(tbl0, tbl1)
@@ -69,10 +85,12 @@ return function(Infinity)
 		table.insert(self._Replicators, Callback)
 
 		return function()
-			local Index = table.find(self._Replicators, Callback)
+			for Index, Object in ipairs(self._Replicators) do
+				if Object == Callback then
+					table.remove(self._Replicators, Index)
 
-			if Index then
-				table.remove(self._Replicators, Index)
+					return
+				end
 			end
 		end
 	end

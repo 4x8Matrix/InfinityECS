@@ -17,6 +17,14 @@ return function(Infinity)
         return self.Name
     end
 
+	function Clock:Resume(...)
+		local Success, Result = coroutine.resume(...)
+
+		if not Success then
+			return error(string.format("%s\n%s", Result, debug.traceback()))
+		end
+	end
+
     function Clock:Update(DeltaTime)
         DeltaTime = DeltaTime or 0
 
@@ -24,7 +32,7 @@ return function(Infinity)
 
         for Index, TaskData in ipairs(self.Tasks) do
             if os.clock() - TaskData[2] >= TaskData[1] then
-                coroutine.resume(TaskData[3], (((os.clock() - TaskData[2]) - TaskData[1]) + DeltaTime))
+				self:Resume(TaskData[3], (((os.clock() - TaskData[2]) - TaskData[1]) + DeltaTime))
 
                 table.remove(self.Tasks, Index)
             end
