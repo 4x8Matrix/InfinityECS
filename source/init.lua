@@ -46,10 +46,19 @@ function Infinity:Update(...)
 	self.SystemClock:Update(...)
 end
 
-function Infinity:GetService(ServiceName)
+function Infinity:GetService(ServiceName, Async)
 	if self._Cache[ServiceName] then
 		return self._Cache[ServiceName]
 	else
+		if Async then
+			self._Cache[ServiceName] = self[ServiceName]
+
+			repeat
+				task.wait()
+				self._Cache[ServiceName] = self[ServiceName]
+			until self._Cache[ServiceName]
+		end
+
 		self._Cache[ServiceName] = self[ServiceName] or (Environment.game and Environment.game:GetService(ServiceName))
 	end
 
