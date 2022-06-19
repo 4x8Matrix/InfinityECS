@@ -62,14 +62,14 @@ return function(Infinity)
 	end
 
     function Component:Concat(val)
-		val = self._Data + (type(val) == "function" and val(self._Data)) or val
+		val = (type(val) == "function" and val(self._Data)) or val
 		
 		self:Update(val)
         self._Data = self._Data .. val
     end
 
     function Component:Inc(val)
-		val = self._Data + (type(val) == "function" and val(self._Data)) or val
+		val = self._Data + ((type(val) == "function" and val(self._Data)) or val)
 
 		self:Update(val)
         self._Data = self._Data + val
