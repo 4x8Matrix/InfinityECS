@@ -37,12 +37,20 @@ Will attempt to perform a concentration operation on the data the component is s
 	If you attempt to do this on an illegal type; Such as a table then this function will raise an exception.
 
 ---
-### Inc
+### Increment
 ```
-Component:Inc(Int: Number)
+Component:Increment(Int: Number)
 ```
 
 Will attempt to perform an increment operation on the data the component is storing 
+
+---
+### Decrement
+```
+Component:Decrement(Int: Number)
+```
+
+Will attempt to perform an decrement operation on the data the component is storing 
 
 ---
 ### Is

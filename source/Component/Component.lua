@@ -13,7 +13,7 @@ return function(Infinity)
     function Component:__index(Index)
         if Component[Index] then return Component[Index] end
 
-        local Data = rawget(self, "_Data")
+        local Data = rawget(self, "Data")
         local DataType = type(Data)
 
         return (DataType == "table" and Data[Index]) or nil
@@ -24,19 +24,27 @@ return function(Infinity)
     end
 
 	function Component:__div(Value)
-		return self._Data / Value
+		return self.Data / Value
 	end
 	
 	function Component:__mul(Value)
-		return self._Data * Value
+		return self.Data * Value
 	end
 	
 	function Component:__sub(Value)
-		return self._Data - Value
+		return self.Data - Value
 	end
 	
 	function Component:__add(Value)
-		return self._Data + Value
+		return self.Data + Value
+	end
+
+	function Component:__lt(Value)
+		return self.Data < Value
+	end
+
+	function Component:__le(Value)
+		return self.Data <= Value
 	end
 
     -- // EOL Functions
@@ -62,22 +70,29 @@ return function(Infinity)
 	end
 
     function Component:Concat(val)
-		val = (type(val) == "function" and val(self._Data)) or val
+		val = (type(val) == "function" and val(self.Data)) or val
 		
 		self:Update(val)
-        self._Data = self._Data .. val
+        self.Data = self.Data .. val
     end
 
-    function Component:Inc(val)
-		val = self._Data + ((type(val) == "function" and val(self._Data)) or val)
+    function Component:Increment(val)
+		val = self.Data + ((type(val) == "function" and val(self.Data)) or val)
 
 		self:Update(val)
-        self._Data = self._Data + val
+        self.Data = self.Data + val
+    end
+
+	function Component:Decrement(val)
+		val = self.Data - ((type(val) == "function" and val(self.Data)) or val)
+
+		self:Update(val)
+        self.Data = self.Data + val
     end
 
 	function Component:Update(Value)
 		for _, ReplicatorCallback in ipairs(self._Replicators) do
-			ReplicatorCallback(self._Data, Value)
+			ReplicatorCallback(self.Data, Value)
 		end
 	end
 
@@ -99,7 +114,7 @@ return function(Infinity)
         local States = { ... }
 
         for _, State in ipairs(States) do
-            if State == self._Data then return State end
+            if State == self.Data then return State end
         end
     end
 
@@ -107,7 +122,7 @@ return function(Infinity)
         local Index, Key, value = 0, nil, nil
 
         return function()
-            local DataType = type(self._Data)
+            local DataType = type(self.Data)
 
             if DataType ~= "table" then
                 if Index ~= 0 then
@@ -115,11 +130,11 @@ return function(Infinity)
                 else
                     Index = Index + 1
 
-                    return 1, self._Data
+                    return 1, self.Data
                 end
             end
 
-            Key, value = next(self._Data, Key)
+            Key, value = next(self.Data, Key)
             Index = Index + 1
 
             return Key, value
@@ -128,11 +143,11 @@ return function(Infinity)
 
     function Component:Set(val)
 		self:Update(val)
-        self._Data = (type(val) ~= "function" and val) or val(self._Data)
+        self.Data = (type(val) ~= "function" and val) or val(self.Data)
     end
 
 	function Component:Get(val)
-        return self._Data
+        return self.Data
     end
 
     function Component:Equal(Target)
@@ -140,11 +155,11 @@ return function(Infinity)
     end
 
     function Component:Type()
-        return type(self._Data)
+        return type(self.Data)
     end
 
     function Component.new(Data, ComponentName)
-        return setmetatable({ _Data = Data, Id = Infinity:_Id(), Name = ComponentName, _Replicators = { }}, Component)
+        return setmetatable({ Data = Data, Id = Infinity:_Id(), Name = ComponentName, _Replicators = { }}, Component)
     end
 
     return Component
